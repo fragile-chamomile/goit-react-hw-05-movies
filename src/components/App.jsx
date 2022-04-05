@@ -3,13 +3,13 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Коомпоненты
 import Layout from './Layout/Layout';
-import Cast from '../components/Cast/Cast';
-import Reviews from '../components/Reviews/Reviews';
 
 // Code Splitting (разделение кода)
 const HomePage = lazy(() => import('../pages/HomePage'));
 const MoviesPage = lazy(() => import('../pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
+const Cast = lazy(() => import('../components/Cast/Cast'));
+const Reviews = lazy(() => import('../components/Reviews/Reviews'));
 
 const App = () => {
   return (

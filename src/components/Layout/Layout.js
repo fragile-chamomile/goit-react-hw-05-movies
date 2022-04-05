@@ -1,20 +1,5 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import { Nav } from './Layout.styled';
-import styled from '@emotion/styled';
-
-const StyledNavLink = styled(NavLink)`
-  text-decoration-line: none;
-  font-size: 20px;
-  font-weight: 500;
-
-  &:first-of-type {
-    margin-right: 20px;
-  }
-
-  &.active {
-    color: red;
-  }
-`;
+import { Outlet } from 'react-router-dom';
+import { Nav, StyledNavLink } from './Layout.styled';
 
 const Layout = () => {
   return (

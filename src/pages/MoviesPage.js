@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThreeDots } from 'react-loader-spinner';
@@ -9,21 +10,22 @@ import SearchForm from '../components/SearchForm/SearchForm';
 import SearchMoviesList from '../components/SearchMoviesList/SearchMoviesList';
 
 const MoviesPage = () => {
-  const [searchMovie, setSearchMovie] = useState('');
   const [movies, setMovies] = useState();
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('idle');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   useEffect(() => {
-    if (!searchMovie) {
+    if (location.search === '') {
       return;
     }
 
     setStatus('pending');
 
-    Movies.searchMovies(searchMovie)
+    Movies.searchMovies(searchParams.get('query'))
       .then(({ results }) => {
-        if (results.length === 0) {
+        if (!results) {
           toast.warning('Sorry. Nothing found!', { theme: 'colored' });
           setStatus('idle');
           return;
@@ -36,11 +38,11 @@ const MoviesPage = () => {
         setError(error);
         setStatus('rejected');
       });
-  }, [searchMovie]);
+  }, [location.search, searchParams]);
 
   // Поиск картинки
-  const handleSearchFormSubmit = value => {
-    setSearchMovie(value);
+  const handleSearchFormSubmit = event => {
+    setSearchParams(`query=${event}`);
     setStatus('pending');
   };
 

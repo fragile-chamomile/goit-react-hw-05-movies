@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import * as Movies from '../services/movies-api';
 import { ThreeDots } from 'react-loader-spinner';
 
 // компоненты
-// import ReturnButton from '../components/ReturnButton/ReturnButton';
 import MovieDetails from '../components/MovieDetails/MovieDetails';
 
 function MovieDetailspage(results) {

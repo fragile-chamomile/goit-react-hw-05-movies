@@ -40,10 +40,10 @@ const MovieDetails = ({ movies }) => {
             <ul key={movie.id}>
               Additional information
               <li>
-                <Link to={`/movies/${movie.id}/cast`}>Cast</Link>
+                <Link to={`cast`}>Cast</Link>
               </li>
               <li>
-                <Link to={`/movies/${movie.id}/reviews`}>Reviews</Link>
+                <Link to={`reviews`}>Reviews</Link>
               </li>
             </ul>
             <hr />
