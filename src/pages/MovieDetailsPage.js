@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import * as Movies from '../services/movies-api';
 import { ThreeDots } from 'react-loader-spinner';
 
@@ -8,7 +9,8 @@ import MovieDetails from '../components/MovieDetails/MovieDetails';
 
 function MovieDetailspage(results) {
   const { movieId } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const location = useLocation();
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('idle');
@@ -51,7 +53,11 @@ function MovieDetailspage(results) {
   if (status === 'resolved') {
     return (
       <main>
-        <button onClick={() => navigate(-1)}>Go back</button>
+        {/* <button onClick={() => navigate(-1)}>Go back</button> */}
+        <button>
+          {' '}
+          <Link to={location?.state?.from ?? '/'}>Go back</Link>{' '}
+        </button>
         <MovieDetails movies={movies} />
       </main>
     );

@@ -1,8 +1,9 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Img, Wrapper } from './MovieDetails.styled';
 
 const MovieDetails = ({ movies }) => {
+  const location = useLocation();
   return (
     <>
       {movies &&
@@ -37,13 +38,23 @@ const MovieDetails = ({ movies }) => {
               </div>
             </Wrapper>
             <hr />
+            <p>Additional information</p>
             <ul key={movie.id}>
-              Additional information
               <li>
-                <Link to={`cast`}>Cast</Link>
+                <Link
+                  to={`cast`}
+                  state={{ from: location !== null ? location.state.from : '' }}
+                >
+                  Cast
+                </Link>
               </li>
               <li>
-                <Link to={`reviews`}>Reviews</Link>
+                <Link
+                  to={`reviews`}
+                  state={{ from: location !== null ? location.state.from : '' }}
+                >
+                  Reviews
+                </Link>
               </li>
             </ul>
             <hr />

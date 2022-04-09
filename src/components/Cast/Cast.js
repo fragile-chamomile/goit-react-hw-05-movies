@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as Movies from '../../services/movies-api';
 import { ThreeDots } from 'react-loader-spinner';
+import { List } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -47,7 +48,7 @@ const Cast = () => {
   if (status === 'resolved') {
     return (
       <main>
-        <ul>
+        <List>
           {actors.length > 0 ? (
             actors.map(actor => (
               <li key={actor.cast_id}>
@@ -72,7 +73,7 @@ const Cast = () => {
           ) : (
             <p>No cast</p>
           )}
-        </ul>
+        </List>
       </main>
     );
   }
